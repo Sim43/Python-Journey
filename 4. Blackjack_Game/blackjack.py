@@ -1,6 +1,7 @@
 import random
 import clear
 import art
+import time
 
 
 def deal_card():
@@ -29,9 +30,9 @@ def highest_check(player_cards, computer_cards):
     if add_cards(player_cards) > 21 and add_cards(computer_cards) > 21:
         print(f"Your final hand: {player_cards}\nComputer's final hand: {computer_cards}\nYou Lost!")
     elif add_cards(player_cards) > 21:
-        print(f"Your final hand: {player_cards}\nComputer's final hand: {computer_cards}\nYou went over. Your Lose.")
+        print(f"Your final hand: {player_cards}\nComputer's final hand: {computer_cards}\nYou went over. You Lose.")
     elif add_cards(computer_cards) > 21:
-        print(f"Your final hand: {player_cards}\nComputer's final hand: {computer_cards}\nComputer went over. Your Win.")
+        print(f"Your final hand: {player_cards}\nComputer's final hand: {computer_cards}\nComputer went over. You Win.")
     elif add_cards(player_cards) == add_cards(computer_cards):
         print(f"Your final hand: {player_cards}\nComputer's final hand: {computer_cards}\nIt's a Draw!")
     elif add_cards(player_cards) == 21:
@@ -55,7 +56,9 @@ def recursive_play():
         print(f"Your cards: {player_cards}")
         computer_cards = [deal_card(), deal_card()]
         print(f"Computer's first card: {computer_cards[0]}")
-        highest_check(player_cards, computer_cards[0])
+        if add_cards(player_cards) == 21:
+            highest_check(player_cards, computer_cards)
+            is_finished = True
         while hit == 'y' and not is_finished:
             hit = input("Type 'y' to get another card, type 'n' to pass: ")
             if hit == 'y':
@@ -72,6 +75,8 @@ def recursive_play():
                     computer_cards.append(deal_card())
                 highest_check(player_cards, computer_cards)
                 is_finished = True
+        print("Wait...")
+        time.sleep(3)
         recursive_play()
     else:
         return
