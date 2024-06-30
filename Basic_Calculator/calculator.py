@@ -14,24 +14,29 @@ def calculate(num1, operator, num2):
         return num1 / num2
 
 
-print(art.logo)
-again = "n"
-result = 0
-while again != "e":
-    if again == "n":
-        first_number = float(input("What's the first number: "))
+def recursive_func():
+    first_number = float(input("What's the first number: "))
+    again = True
+    result = 0
+    yorn = ""
+    while again:
         operation = input("+\n-\n*\n/\nPick and operation: ")
         second_number = float(input("What's the second number: "))
         result = calculate(first_number, operation, second_number)
         print(f"{first_number} {operation} {second_number} = {result}")
-        again = input(f"Type 'y' to continue calculating with {result}, or type 'n' to start a new calculation, or type 'e' to exit: ")
-        if again == "n":
+        yorn = input(
+            f"Type 'y' to continue calculating with {result}, or type 'n' to start a new calculation, or type 'e' to exit: ")
+        if yorn == "n":
             clear.clear()
-    else:
-        first_number = result
-        operation = input("+\n-\n*\n/\nPick and operation: ")
-        second_number = float(input("What's the second number: "))
-        result = calculate(first_number, operation, second_number)
-        print(f"{first_number} {operation} {second_number} = {result}")
-        again = input(f"Type 'y' to continue calculating with {result}, or type 'n' to start a new calculation, or type 'e' to exit: ")
-print("Goodbye.")
+        if yorn == "y":
+            first_number = result
+        elif yorn == "n":
+            again = False
+            recursive_func()
+        else:
+            return
+
+
+print(art.logo)
+recursive_func()
+print("Goodbye!")
