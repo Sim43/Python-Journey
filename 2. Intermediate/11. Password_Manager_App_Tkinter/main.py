@@ -2,7 +2,7 @@ from tkinter import *
 from tkinter import messagebox
 from random import randint, choice, shuffle
 import json
-# ---------------------------- PASSWORD GENERATOR ------------------------------- #
+# --------------------------- PASSWORD GENERATOR ------------------------------- #
 
 
 def generate_password():
