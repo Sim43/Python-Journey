@@ -26,6 +26,7 @@ month = now.month
 
 df = pd.read_csv("birthdays.csv")
 target = df[df.month == month]
+target = target[target.day == day]
 try:
     name = target.name.iloc[0]
     reciever_email = target.email.iloc[0]
